@@ -3,14 +3,12 @@ name: Windows Release
 on:
   push:
     branches:
-      - 'master'
-      - 'continuous-integration'
+      - 'main'      
     tags:
       - 'v*'
   pull_request:
     branches:
-    - 'master'
-    - 'continuous-integration'
+    - 'main'    
 
 defaults:
   run:
@@ -83,7 +81,7 @@ jobs:
               7z a qt-planets-build.zip ${{ runner.temp }}\build\* -r
               
       - name: Save build artifact
-        uses: actions/upload-artifact@master
+        uses: actions/upload-artifact@main
         with:
           name: ${{ env.ARTIFACT }}
           path: ${{ runner.temp }}\${{ env.ARTIFACT }}
