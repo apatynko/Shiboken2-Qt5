@@ -52,8 +52,9 @@ jobs:
           target: ${{ runner.temp }}\
 
       - name: Unzip JOM
+        working-directory: ${{ runner.temp }}
         run: |
-          Expand-Archive -Path "${{ runner.temp }}\jom.zip" -DestinationPath "${{ runner.temp }}\jom"
+          7z x jom.zip -ojom
 
       - name: Clone PySide2 repository
         run: |
