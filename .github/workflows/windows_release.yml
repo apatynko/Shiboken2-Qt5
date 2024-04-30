@@ -17,7 +17,7 @@ defaults:
 env:
   SOURCE_DIR:   ${{ github.workspace }}
   QT_VERSION:   5.15.2
-  ARTIFACT:     qt-planets-build.zip
+  ARTIFACT:     shibokenpyside2-build.zip
 
 jobs:
   build:
@@ -54,16 +54,8 @@ jobs:
       - name: Unzip JOM
         working-directory: ${{ runner.temp }}
         run: |
-          7z x jom.zip -ojom
-
-      - name: Clone PySide2 repository
-        run: |
-          git clone https://code.qt.io/pyside/pyside-setup
-          cd pyside-setup
-          git branch --track 5.15 origin/5.15
-          git checkout 5.15
+          7z x jom.zip -ojom      
 
       - name: Build PySide2 and Shiboken2
         run: |
-          cd pyside-setup
-          python setup.py install --qmake="${{ runner.temp }}\Qt\${{ env.QT_VERSION }}\msvc2019_64\bin\qmake.exe" --jom="${{ runner.temp }}\jom\jom.exe" --build-tests --ignore-git --jobs=2
+          python setup.py install --qmake="${{ runner.temp }}\Qt\${{ env.QT_VERSION }}\msvc2019_64\bin\qmake.exe" --jobs=8
