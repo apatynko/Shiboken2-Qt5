@@ -1,54 +1,152 @@
-# C++ objects and libs
+## PySide2
+/pyside*_build
+/pyside*_install
+/PySide
+/PySide-*.*.*
+/SciTE.*
+/pysideuic
+
+distribute-*.egg
+distribute-*.tar.gz
+explore2
+build_history/2*
+
+*.qdocconf
+*.qdocconf.in
+
+*.egg-info
+*.pyc
+
+## C++
+
+# Prerequisites
+*.d
+
+# Compiled Object files
 *.slo
 *.lo
 *.o
-*.a
-*.la
-*.lai
+*.obj
+
+# Precompiled Headers
+*.gch
+*.pch
+
+# Compiled Dynamic libraries
 *.so
-*.so.*
-*.dll
 *.dylib
+*.dll
 
-# Qt-es
-object_script.*.Release
-object_script.*.Debug
-*_plugin_import.cpp
-/.qmake.cache
-/.qmake.stash
-*.pro.user
-*.pro.user.*
-*.qbs.user
-*.qbs.user.*
-*.moc
-moc_*.cpp
-moc_*.h
-qrc_*.cpp
-ui_*.h
-*.qmlc
-*.jsc
-Makefile*
-*build-*
-*.qm
-*.prl
+# Fortran module files
+*.mod
+*.smod
 
-# Qt unit tests
-target_wrapper.*
+# Compiled Static libraries
+*.lai
+*.la
+*.a
+*.lib
 
-# QtCreator
-*.autosave
+# Executables
+*.exe
+*.out
+*.app
 
-# QtCreator Qml
-*.qmlproject.user
-*.qmlproject.user.*
+##  Python
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
 
-# QtCreator CMake
-CMakeLists.txt.user*
+# C extensions
+*.so
 
-# QtCreator 4.8< compilation database
+# Distribution / packaging
+.Python
+build/
+develop-eggs/
+#dist/ # we place the changelogs here
+downloads/
+eggs/
+.eggs/
+/lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+pip-wheel-metadata/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# PyInstaller
+*.manifest
+*.spec
+
+# Installer logs
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Translations
+*.mo
+*.pot
+
+# Sphinx documentation
+docs/_build/
+
+# PyBuilder
+target/
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# IPython
+profile_default/
+ipython_config.py
+
+# pyenv
+.python-version
+
+# pipenv
+#   According to pypa/pipenv#598, it is recommended to include Pipfile.lock in version control.
+#   However, in case of collaboration, if having platform-specific dependencies or dependencies
+#   having no cross-platform support, pipenv may install dependencies that don’t work, or not
+#   install all needed dependencies.
+#Pipfile.lock
+
+# Environments
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# Spyder project settings
+.spyderproject
+.spyproject
+
+# mkdocs documentation
+/site
+
+# mypy
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+## CMake
+CMakeLists.txt.user
+CMakeCache.txt
+CMakeFiles
+CMakeScripts
+#Testing    Conflicts with the testing directory
+Makefile
+cmake_install.cmake
+install_manifest.txt
 compile_commands.json
-
-# QtCreator local machine specific files for imported projects
-*creator.user*
-
-*_qmlcache.qrc
+CTestTestfile.cmake
+_deps

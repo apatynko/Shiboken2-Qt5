@@ -33,6 +33,7 @@ jobs:
         working-directory:  ${{ github.workspace }}
         run: |
           git fetch --all --tags -f
+
       - name: Install Qt
         uses: jurplel/install-qt-action@v2
         with:
@@ -51,38 +52,17 @@ jobs:
           target: ${{ runner.temp }}\
 
       - name: Unzip JOM
-        working-directory: ${{ runner.temp }}
-        run:  |
-              7z x jom.zip -ojom
-              
-      - name: Create build directory
-        run:  mkdir ${{ runner.temp }}\build
+        run: |
+          Expand-Archive -Path "${{ runner.temp }}\jom.zip" -DestinationPath "${{ runner.temp }}\jom"
 
-      - name: Set up Visual Studio shell
-        uses: egor-tensin/vs-shell@v2
-        with:
-          arch: x64
+      - name: Clone PySide2 repository
+        run: |
+          git clone https://code.qt.io/pyside/pyside-setup
+          cd pyside-setup
+          git branch --track 5.15 origin/5.15
+          git checkout 5.15
 
-      - name: Build
-        working-directory: ${{ runner.temp }}\build
-        run:  |
-              qmake -r ${{ env.SOURCE_DIR }}\planets-qml.pro
-              ${{ runner.temp }}\jom\jom -j2
-              cd release
-              windeployqt --qmldir ${{ env.SOURCE_DIR }} planets-qml.exe --pdb --release --compiler-runtime
-              copy C:\Windows\System32\concrt140.dll . 
-              copy C:\Windows\System32\vccorlib140.dll .
-              copy C:\Windows\System32\msvcp140.dll .
-              copy C:\Windows\System32\vcruntime140.dll .
-              
-      - name: Zip build
-        working-directory: ${{ runner.temp }}
-        run:  |
-              7z a qt-planets-build.zip ${{ runner.temp }}\build\* -r
-              
-      - name: Save build artifact
-        uses: actions/upload-artifact@main
-        with:
-          name: ${{ env.ARTIFACT }}
-          path: ${{ runner.temp }}\${{ env.ARTIFACT }}
-              
+      - name: Build PySide2 and Shiboken2
+        run: |
+          cd pyside-setup
+          python setup.py install --qmake="${{ runner.temp }}\Qt\${{ env.QT_VERSION }}\msvc2019_64\bin\qmake.exe" --jom="${{ runner.temp }}\jom\jom.exe" --build-tests --ignore-git --jobs=2
