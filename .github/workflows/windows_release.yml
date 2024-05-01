@@ -76,7 +76,7 @@ jobs:
       - name: Extract libclang
         working-directory: ${{ runner.temp }}
         run: |
-          7z x libclang-release_100-based-windows-vs2019_64.7z -oc:\libclang
+          7z x libclang-release_100-based-windows-vs2019_64.7z -oc:\
 
       - name: Set environment variables
         shell: pwsh
