@@ -86,4 +86,4 @@ jobs:
 
       - name: Build PySide2 and Shiboken2
         run: |
-          python setup.py build --qmake="${{ runner.temp }}\Qt\${{ env.QT_VERSION }}\msvc2019_64\bin\qmake.exe" --openssl="C:\Program Files\OpenSSL-Win64\bin" --build-tests --ignore-git --no-jom
+          python setup.py build --qmake="${{ runner.temp }}\Qt\${{ env.QT_VERSION }}\msvc2019_64\bin\qmake.exe" --openssl="C:\Program Files\OpenSSL-Win64\bin" --ignore-git --no-jom --skip-make-install
