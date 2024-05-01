@@ -20,6 +20,7 @@ env:
   IMAGE_FOLDER: D:\\a\\Shiboken2-Qt5\\Shiboken2-Qt5\\
   LLVM_INSTALL_DIR: 'C:\Program Files\LLVM'
   ARTIFACT:     shibokenpyside2-build.zip
+  PATH: 'C:\Program Files\LLVM\bin'
 
 jobs:
   build:
@@ -66,6 +67,11 @@ jobs:
 
       - name: Setup MSVC dev env
         uses: ilammy/msvc-dev-cmd@v1
+
+      - name: Verify libclang installation
+        run: |
+          dir "C:\Program Files\LLVM\lib"
+          type CMakeCache.txt
 
       - name: Build PySide2 and Shiboken2
         run: |
