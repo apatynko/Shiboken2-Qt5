@@ -34,6 +34,9 @@ jobs:
         run: |
           git fetch --all --tags -f
 
+      - name: Install OpenSSL
+        run: powershell.exe ./.github/workflows/Install-OpenSSL.ps1
+      
       - name: Install Qt
         uses: jurplel/install-qt-action@v2
         with:
@@ -61,4 +64,4 @@ jobs:
 
       - name: Build PySide2 and Shiboken2
         run: |
-          python setup.py build --qmake="${{ runner.temp }}\Qt\${{ env.QT_VERSION }}\msvc2019_64\bin\qmake.exe" --build-tests --ignore-git --parallel=8
+          python setup.py build --qmake="${{ runner.temp }}\Qt\${{ env.QT_VERSION }}\msvc2019_64\bin\qmake.exe" --openssl="C:\Program Files\OpenSSL-Win64\bin" --build-tests --ignore-git --parallel=8
