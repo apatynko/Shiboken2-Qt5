@@ -59,6 +59,6 @@ jobs:
       - name: Setup MSVC dev env
         uses: ilammy/msvc-dev-cmd@v1
 
-      - name: Build PySide2 and Shiboken2.
+      - name: Build PySide2 and Shiboken2
         run: |
-          python setup.py install --qmake="${{ runner.temp }}\Qt\${{ env.QT_VERSION }}\msvc2019_64\bin\qmake.exe" --jobs=8
+          python setup.py install --qmake="${{ runner.temp }}\Qt\${{ env.QT_VERSION }}\msvc2019_64\bin\qmake.exe" --make="C:\jom\jom.exe -j8"
