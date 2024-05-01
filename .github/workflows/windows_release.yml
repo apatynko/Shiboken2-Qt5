@@ -79,6 +79,7 @@ jobs:
           7z x libclang-release_100-based-windows-vs2019_64.7z -oc:\libclang
 
       - name: Set environment variables
+        shell: pwsh
         run: |
           echo "LLVM_INSTALL_DIR=c:\libclang" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
           echo "PATH=c:\libclang\bin;$env:PATH" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
