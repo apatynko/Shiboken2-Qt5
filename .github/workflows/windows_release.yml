@@ -18,7 +18,7 @@ env:
   SOURCE_DIR:       ${{ github.workspace }}
   QT_VERSION:       5.15.2
   IMAGE_FOLDER:     D:\\a\\Shiboken2-Qt5\\Shiboken2-Qt5\\
-  LLVM_INSTALL_DIR: 'C:\Program Files\LLVM'
+  LLVM_INSTALL_DIR: 'c:\libclang'
   ARTIFACT:          shibokenpyside2-build.zip
 
 jobs:
@@ -66,11 +66,22 @@ jobs:
 
       - name: Setup MSVC dev env
         uses: ilammy/msvc-dev-cmd@v1
+      
+      - name: Download libclang
+        uses: suisei-cn/actions-download-file@v1
+        with:
+          url: https://ftp.icm.edu.pl/packages/qt/development_releases/prebuilt/libclang/libclang-release_100-based-windows-vs2019_64.7z
+          target: ${{ runner.temp }}\
 
-      - name: Verify libclang installation
+      - name: Extract libclang
+        working-directory: ${{ runner.temp }}
         run: |
-          dir "C:\Program Files\LLVM\lib"
-          type ${{ github.workspace }}\build\CMakeCache.txt
+          7z x libclang-release_100-based-windows-vs2019_64.7z -oc:\libclang
+
+      - name: Set environment variables
+        run: |
+          echo "LLVM_INSTALL_DIR=c:\libclang" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
+          echo "PATH=c:\libclang\bin;$env:PATH" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
 
       - name: Build PySide2 and Shiboken2
         run: |
