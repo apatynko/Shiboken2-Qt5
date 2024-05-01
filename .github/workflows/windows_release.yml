@@ -54,7 +54,10 @@ jobs:
       - name: Unzip JOM
         working-directory: ${{ runner.temp }}
         run: |
-          7z x jom.zip -ojom      
+          7z x jom.zip -ojom
+
+      - name: Setup MSVC dev env
+        uses: ilammy/msvc-dev-cmd@v1
 
       - name: Build PySide2 and Shiboken2
         run: |
