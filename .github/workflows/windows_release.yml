@@ -70,7 +70,7 @@ jobs:
       - name: Verify libclang installation
         run: |
           dir "C:\Program Files\LLVM\lib"
-          type CMakeCache.txt
+          type ${{ github.workspace }}\build\CMakeCache.txt
 
       - name: Build PySide2 and Shiboken2
         run: |
