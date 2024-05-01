@@ -17,6 +17,7 @@ defaults:
 env:
   SOURCE_DIR:   ${{ github.workspace }}
   QT_VERSION:   5.15.2
+  IMAGE_FOLDER: D:\\a\\Shiboken2-Qt5\\Shiboken2-Qt5\\
   ARTIFACT:     shibokenpyside2-build.zip
 
 jobs:
