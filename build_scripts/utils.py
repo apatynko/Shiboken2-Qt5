@@ -375,6 +375,8 @@ def run_process_output(args, initial_env=None):
         print("Point 13_2")
         initial_env = os.environ
     print("Point 13_3")
+    print(f"args: {args}")
+    print(f"initial_env: {initial_env}")
     std_out = subprocess.Popen(args, env=initial_env, universal_newlines=1,
                                stdout=subprocess.PIPE).stdout
     print("Point 13_4")
@@ -384,7 +386,7 @@ def run_process_output(args, initial_env=None):
         print(f"line: {line}")
         result.append(line.rstrip())
     std_out.close()
-    print("Point 13_4")
+    print("Point 13_5")
     return result
 
 
