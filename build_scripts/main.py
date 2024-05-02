@@ -1047,7 +1047,10 @@ class PysideBuild(_build, DistUtilsCommandMixin):
             "--build",    # Specifies the build dir
             self.shiboken_build_dir
         ]
+        print("Point 13")
+        print(f"cmake_cmd: {cmake_cmd}")
         out = run_process_output(cmake_cmd)
+        print(f"out from run_process_output(): {out}")
         lines = [s.strip() for s in out]
         pattern = re.compile(r"CLANG_LIBRARY:FILEPATH=(.+)$")
 
@@ -1057,12 +1060,13 @@ class PysideBuild(_build, DistUtilsCommandMixin):
             if match:
                 clang_lib_path = match.group(1)
                 break
-
+        print("Point 14")
         if not clang_lib_path:
             raise RuntimeError("Could not find the location of the libclang "
                                "library inside the CMake cache file.")
-
+        print("Point 15")
         if is_win:
+            print("Point 16")
             # clang_lib_path points to the static import library
             # (lib/libclang.lib), whereas we want to copy the shared
             # library (bin/libclang.dll).
@@ -1070,6 +1074,7 @@ class PysideBuild(_build, DistUtilsCommandMixin):
                                     'bin/libclang.dll',
                                     clang_lib_path)
         else:
+            print("Point 17")
             # shiboken2 links against libclang.so.6 or a similarly
             # named library.
             # If the linked against library is a symlink, resolve
@@ -1091,12 +1096,14 @@ class PysideBuild(_build, DistUtilsCommandMixin):
             clang_lib_path = os.path.abspath(clang_lib_path)
 
         # The destination will be the shiboken package folder.
+        print("Point 18")
         vars = {}
         vars['st_build_dir'] = self.st_build_dir
         vars['st_package_name'] = config.package_name()
         destination_dir = "{st_build_dir}/{st_package_name}".format(**vars)
 
         if os.path.exists(clang_lib_path):
+            print("Point 19")
             basename = os.path.basename(clang_lib_path)
             log.info('Copying libclang shared library {} to the package folder as {}.'.format(
                      clang_lib_path, basename))
@@ -1109,6 +1116,7 @@ class PysideBuild(_build, DistUtilsCommandMixin):
                      force_copy_symlink=True,
                      make_writable_by_owner=True)
         else:
+            print("Point 20")
             raise RuntimeError("Error copying libclang library "
                                "from {} to {}. ".format(clang_lib_path, destination_dir))
 
