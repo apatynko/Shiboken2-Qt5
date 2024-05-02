@@ -41,6 +41,11 @@ jobs:
 
       - name: Install LLVM
         run: choco install llvm
+
+      - name: Setup CMake
+        uses: jwlawson/actions-setup-cmake@v1.9
+        with:
+          cmake-version: '3.21.1'
       
       - name: Install Qt
         uses: jurplel/install-qt-action@v2
