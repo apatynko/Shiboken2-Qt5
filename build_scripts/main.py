@@ -971,6 +971,8 @@ class PysideBuild(_build, DistUtilsCommandMixin):
         """
         try:
             log.info("\nPreparing setup tools build directory.\n")
+            print("Point 11")
+            
             vars = {
                 "site_packages_dir": self.site_packages_dir,
                 "sources_dir": self.sources_dir,
@@ -993,6 +995,7 @@ class PysideBuild(_build, DistUtilsCommandMixin):
                 "qt_qml_dir": self.qtinfo.qml_dir,
                 "target_arch": self.py_arch,
             }
+            print(f"vars: {vars}")
 
             # Needed for correct file installation in generator build
             # case.
@@ -1002,6 +1005,7 @@ class PysideBuild(_build, DistUtilsCommandMixin):
             os.chdir(self.script_dir)
 
             if sys.platform == "win32":
+                print("Point 12")
                 vars['dbg_postfix'] = OPTION["DEBUG"] and "_d" or ""
                 return prepare_packages_win32(self, vars)
             else:
