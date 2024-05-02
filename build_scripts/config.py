@@ -47,7 +47,7 @@ class Config(object):
         self._build_type_all = "all"
         self._invocation_type_top_level = "top-level"
         self._invocation_type_internal = "internal"
-
+        print("Point 3")
         # The keyword arguments which will be given to setuptools.setup
         self.setup_kwargs = {}
 

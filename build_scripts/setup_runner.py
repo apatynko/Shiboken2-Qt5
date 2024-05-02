@@ -117,6 +117,7 @@ class SetupRunner(object):
             if config.internal_build_type not in config.get_allowed_internal_build_values():
                 raise RuntimeError("Invalid '{}' option given to --internal-build-type. "
                                    .format(config.internal_build_type))
+            print("Point 1")
             self.run_setuptools_setup()
             return
 
@@ -172,6 +173,6 @@ class SetupRunner(object):
         Runs setuptools.setup() once in a single setup.py
         sub-invocation.
         """
-
+        print("Point 2")
         kwargs = config.setup_kwargs
         setup(**kwargs)

@@ -403,6 +403,7 @@ class PysideInstall(_install, DistUtilsCommandMixin):
         _install.finalize_options(self)
 
     def run(self):
+        print("Point 4")
         _install.run(self)
         print('--- Install completed ({}s)'.format(elapsed()))
 
