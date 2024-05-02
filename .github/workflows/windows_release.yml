@@ -53,6 +53,10 @@ jobs:
           install-deps: true
           setup-python: false
 
+      - name: Install lxml graphviz sphinx
+        run: |
+          pip install lxml graphviz sphinx
+
       - name: Download JOM
         uses: suisei-cn/actions-download-file@v1
         with:
