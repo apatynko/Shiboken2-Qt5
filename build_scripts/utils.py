@@ -370,15 +370,21 @@ def rmtree(dirname, ignore=False):
 
 
 def run_process_output(args, initial_env=None):
+    print("Point 13_1")
     if initial_env is None:
+        print("Point 13_2")
         initial_env = os.environ
+    print("Point 13_3")
     std_out = subprocess.Popen(args, env=initial_env, universal_newlines=1,
                                stdout=subprocess.PIPE).stdout
+    print("Point 13_4")
     result = []
     for raw_line in std_out.readlines():
         line = raw_line if sys.version_info >= (3,) else raw_line.decode('utf-8')
+        print(f"line: {line}")
         result.append(line.rstrip())
     std_out.close()
+    print("Point 13_4")
     return result
 
 
