@@ -375,6 +375,22 @@ def run_process_output(args, initial_env=None):
         print("Point 13_2")
         initial_env = os.environ
     print("Point 13_3")
+    print("run CMAKE with help command")
+    args_help = ['C:\\Program Files\\CMake\\bin\\cmake.exe', '--help']
+    std_out2 = subprocess.Popen(args_help, env=initial_env, universal_newlines=1,
+                               stdout=subprocess.PIPE).stdout
+    if std_out2:
+        print("Point 13_3_1")
+        for raw_line in std_out2.readlines():
+            line = raw_line if sys.version_info >= (3,) else raw_line.decode('utf-8')
+            print(f"line: {line}")
+    print("run CMAKE with help command - end")
+    
+    for root, dirs, files in os.walk("D:\\a\\Shiboken2-Qt5\\Shiboken2-Qt5\\pyside3_build\\py3.7-qt5.15.2-64bit-release\\shiboken2"):
+        for filename in files:
+            print(filename)
+    print("end with list of files in the directory")
+    
     print(f"args: {args}")
     print(f"initial_env: {initial_env}")
     std_out = subprocess.Popen(args, env=initial_env, universal_newlines=1,
