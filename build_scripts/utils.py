@@ -391,8 +391,12 @@ def run_process_output(args, initial_env=None):
             print(filename)
     print("end with list of files in the directory")
     
-    print(f"args: {args}")
+    print(f"args: {args}")    
     print(f"initial_env: {initial_env}")
+
+    print("Point 13_3_2")
+    print("manually assigne CMAKE command")
+    args = ['C:\\hostedtoolcache\\windows\\cmake\\3.21.1\\x64\\cmake-3.21.1-windows-x86_64\\bin\\cmake.exe', '--build', 'D:\\a\\Shiboken2-Qt5\\Shiboken2-Qt5\\pyside3_build\\py3.7-qt5.15.2-64bit-release\\shiboken2']
     std_out = subprocess.Popen(args, env=initial_env, universal_newlines=1,
                                stdout=subprocess.PIPE).stdout
     print("Point 13_4")
