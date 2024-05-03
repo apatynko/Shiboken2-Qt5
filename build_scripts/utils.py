@@ -390,9 +390,14 @@ def run_process_output(args, initial_env=None):
         for filename in files:
             print(filename)
     print("end with list of files in the directory")
+
+    # print the output of the file CMakeCache.txt
+    with open("D:\\a\\Shiboken2-Qt5\\Shiboken2-Qt5\\pyside3_build\\py3.7-qt5.15.2-64bit-release\\shiboken2\\CMakeCache.txt") as f:
+        for line in f:
+            print(line)
     
     print(f"args: {args}")    
-    print(f"initial_env: {initial_env}")
+    #print(f"initial_env: {initial_env}")
 
     print("Point 13_3_2")
     print("manually assign CMAKE command")
