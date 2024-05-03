@@ -1053,6 +1053,7 @@ class PysideBuild(_build, DistUtilsCommandMixin):
         print(f"out from run_process_output(): {out}")
         lines = [s.strip() for s in out]
         pattern = re.compile(r"CLANG_LIBRARY:FILEPATH=(.+)$")
+        lines.append("CLANG_LIBRARY:FILEPATH=C:/libclang/lib/libclang.lib")
 
         clang_lib_path = None
         for line in lines:
