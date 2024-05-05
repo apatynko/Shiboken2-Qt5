@@ -70,10 +70,10 @@ jobs:
       
       - name: Build PySide2 and Shiboken2
         run: |
-              python setup.py build --qmake=/usr/lib/x86_64-linux-gnu/qt5/bin/qmake --build-tests --ignore-git --parallel=2
+              python setup.py build --qmake=/home/runner/work/_temp/Qt/5.15.2/bin/qmake --build-tests --ignore-git --parallel=2
         
       - name: Install PySide2 and Shiboken2
         run: |
-              python setup.py install --qmake=/usr/lib/x86_64-linux-gnu/qt5/bin/qmake --build-tests --ignore-git --parallel=2
+              python setup.py install --qmake=/home/runner/work/_temp/Qt/5.15.2/bin/qmake --build-tests --ignore-git --parallel=2
     
               
