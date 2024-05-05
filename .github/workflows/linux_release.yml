@@ -67,5 +67,13 @@ jobs:
               wget https://github.com/Kitware/CMake/releases/download/v3.13.2/cmake-3.13.2-Linux-x86_64.tar.gz
               tar xvf cmake-3.13.2-Linux-x86_64.tar.gz
               echo "PATH=$PWD/cmake-3.13.2-Linux-x86_64/bin/:$PATH" >> $GITHUB_ENV
+      
+      - name: Build PySide2 and Shiboken2
+        run: |
+              python setup.py build --qmake=/usr/lib/x86_64-linux-gnu/qt5/bin/qmake --build-tests --ignore-git --parallel=2
+        
+      - name: Install PySide2 and Shiboken2
+        run: |
+              python setup.py install --qmake=/usr/lib/x86_64-linux-gnu/qt5/bin/qmake --build-tests --ignore-git --parallel=2
     
               
