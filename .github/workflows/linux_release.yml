@@ -55,5 +55,17 @@ jobs:
             sudo apt-get install -y llvm-6.0 virtualenvwrapper python3 python3-dev cmake build-essential git clang-6.0 libclang-6.0-dev libxslt-dev mesa-common-dev libgl1-mesa-glx libglib2.0-0 wget
             python -m pip install --upgrade pip
             python -m pip install sphinx
+
+      - name: Set up CLANG
+        run: |
+            wget https://download.qt.io/development_releases/prebuilt/libclang/libclang-release_100-based-linux-Rhel7.6-gcc5.3-x86_64.7z
+            7z x libclang-release_100-based-linux-Rhel7.6-gcc5.3-x86_64.7z
+            echo "CLANG_INSTALL_DIR=$PWD/libclang" >> $GITHUB_ENV
+
+      - name: Set up CMake
+        run: |
+              wget https://github.com/Kitware/CMake/releases/download/v3.13.2/cmake-3.13.2-Linux-x86_64.tar.gz
+              tar xvf cmake-3.13.2-Linux-x86_64.tar.gz
+              echo "PATH=$PWD/cmake-3.13.2-Linux-x86_64/bin/:$PATH" >> $GITHUB_ENV
     
               
