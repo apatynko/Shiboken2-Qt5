@@ -76,6 +76,9 @@ jobs:
         run: |
               python setup.py install --qmake=${{ runner.temp }}/Qt/${{ env.QT_VERSION }}/gcc_64/bin/qmake --build-tests --ignore-git --parallel=2
     
-      - name: Check Shiboken2
+      - name: Build Example_Qt_and_Shiboken2-master
         run: |
-              shiboken2
+              cd ${{ env.SOURCE_DIR }}/Example_Qt_and_Shiboken2-master
+              mkdir build
+              cd build
+              cmake ..
