@@ -42,4 +42,9 @@ jobs:
               
       - name: Create build directory
         run:  mkdir ${{ env.SOURCE_DIR }}/build
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.8
               
