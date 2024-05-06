@@ -86,4 +86,4 @@ jobs:
       - name: Run main.py
         run: |
               cd ${{ env.SOURCE_DIR }}/Example_Qt_and_Shiboken2-master
-              python Example_Qt_and_Shiboken2-master/main.py
+              python main.py
