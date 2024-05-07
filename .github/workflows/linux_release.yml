@@ -17,7 +17,7 @@ defaults:
 env:
   SOURCE_DIR:   ${{ github.workspace }}
   QT_VERSION:   5.15.2
-  ARTIFACT:     shibokenpyside2-linux-build.AppImage
+  ARTIFACT:     shibokenpyside2-linux-build.zip
 
 jobs:
   build:
@@ -82,9 +82,22 @@ jobs:
               mkdir build
               cd build
               cmake ..
+      
+      - name: Zip build
+        working-directory: ${{ env.SOURCE_DIR }}/Example_Qt_and_Shiboken2-master/build
+        run:  |
+               7z a shibokenpyside2-linux-build.zip ${{ runner.temp }}\build\* -r
+
+      - name: Save build artifact
+        uses: actions/upload-artifact@main
+        with:
+          name: ${{ env.ARTIFACT }}
+          path: ${{ runner.temp }}\${{ env.ARTIFACT }}
         
-      - name: Run main.py
-        run: |
-              export PYTHONPATH="${{ env.SOURCE_DIR }}/Example_Qt_and_Shiboken2-master/build:$PYTHONPATH"
-              cd ${{ env.SOURCE_DIR }}/Example_Qt_and_Shiboken2-master
-              python main.py
+      # - name: Run main.py
+      #   run: |
+      #         export PYTHONPATH="${{ env.SOURCE_DIR }}/Example_Qt_and_Shiboken2-master/build:$PYTHONPATH"
+      #         cd ${{ env.SOURCE_DIR }}/Example_Qt_and_Shiboken2-master
+      #         python main.py
+
+      
