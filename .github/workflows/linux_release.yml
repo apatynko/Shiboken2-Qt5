@@ -82,6 +82,7 @@ jobs:
               mkdir build
               cd build
               cmake ..
+              make install
       
       - name: Zip build
         working-directory: ${{ env.SOURCE_DIR }}/Example_Qt_and_Shiboken2-master/build
