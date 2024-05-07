@@ -83,22 +83,12 @@ jobs:
               cd build
               cmake ..
               make install
-      
-      - name: Zip build
-        working-directory: ${{ env.SOURCE_DIR }}/Example_Qt_and_Shiboken2-master/build
-        run:  |
-               7z a shibokenpyside2-linux-build.zip ${{ env.SOURCE_DIR }}/Example_Qt_and_Shiboken2-master/build/* -r
 
-      - name: Save build artifact
-        uses: actions/upload-artifact@main
-        with:
-          name: ${{ env.ARTIFACT }}
-          path: ${{ env.SOURCE_DIR }}/Example_Qt_and_Shiboken2-master/build/${{ env.ARTIFACT }}
         
-      # - name: Run main.py
-      #   run: |
-      #         export PYTHONPATH="${{ env.SOURCE_DIR }}/Example_Qt_and_Shiboken2-master/build:$PYTHONPATH"
-      #         cd ${{ env.SOURCE_DIR }}/Example_Qt_and_Shiboken2-master
-      #         python main.py
+      - name: Run main.py
+        run: |
+              export PYTHONPATH="${{ env.SOURCE_DIR }}/Example_Qt_and_Shiboken2-master/build:$PYTHONPATH"
+              cd ${{ env.SOURCE_DIR }}/Example_Qt_and_Shiboken2-master
+              python main.py
 
       
